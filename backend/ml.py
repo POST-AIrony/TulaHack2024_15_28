@@ -1,6 +1,6 @@
 from llama_cpp import Llama
 from constant import (
-    SYSTEM_PROMPT,
+    SYSTEM_PROMPT_FOR_HISTORIES,
     BOT_TOKEN,
     LINEBREAK_TOKEN,
     ROLE_TOKENS,
@@ -52,7 +52,7 @@ def convert_to_tokens(messages: List[Dict[str, str]], model: Any) -> List[int]:
     List[int]: Список токенов всех сообщений.
     """
     tokens = []
-    system_message = {"role": "system", "content": SYSTEM_PROMPT}
+    system_message = {"role": "system", "content": SYSTEM_PROMPT_FOR_HISTORIES}
     tokens.extend(get_message_tokens(model, **system_message))
     for message in messages:
         role = message["role"]
@@ -81,13 +81,13 @@ def get_system_tokens(model: Any) -> List[int]:
     Подробности:
     - Функция создает токены для системного сообщения, добавляя соответствующие маркеры.
     """
-    system_message = {"role": "system", "content": SYSTEM_PROMPT}
+    system_message = {"role": "system", "content": SYSTEM_PROMPT_FOR_HISTORIES}
     return get_message_tokens(model, **system_message)
 
 
-def interact(
+def interact_history(
     model_path: str,
-    messages: str,
+    messages: List[Dict[str, str]],
     n_ctx: int = 4096,
     top_k: int = 30,
     top_p: float = 0.9,
@@ -163,25 +163,12 @@ def interact(
 
 
 if __name__ == "__main__":
-    resp = interact(
+    resp = interact_history(
             MODEL_PATH,
             [
                 {
                     "role": "user",
-                    "message": "Привет, придумай интерактивную текстовую историю. давай начнём с того, что всё происходит в дремучем фентези лесу.",
-                },
-                {
-                    "role": "bot",
-                    "message": """Вы находитесь в глубоком и загадочном лесу, где деревья выросли так высоко, что невозможно понять, как далеко они от земли. Сквозь густые листья проникает слабый солнечный свет, который создаёт мрачную атмосферу. Здесь живут разные существа и обитатели леса, которые могут быть вашим другом или врагом.
-
-Вы находитесь на перекрестке двух дорожек, одна ведёт к неизвестному городу, а другая - к заброшенной башне. Что вы выберете?
-
-1. Путь к городу
-2. Путь к заброшенной башне""",
-                },
-                {
-                    "role": "user",
-                    "message": "Путь к заброшенной башне",
+                    "message": "Начальное место истории: Кафе под названием 'alleleo na hue'.",
                 }
             ],
         )
