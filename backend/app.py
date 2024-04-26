@@ -42,7 +42,7 @@ async def sign_in(data: SignInRequest):
             secret_key,
             algorithm="HS256",
             headers={"alg": "HS256", "typ": "JWT"},
-        ).decode("utf-8")
+        ).encode("utf-8")
     }
 
 
@@ -65,6 +65,14 @@ async def sign_up(data: SignUpRequest):
     await user.save()
 
     return {"user_id": user.id}
+
+
+@app.post("/protected")
+async def protected(token: str):
+    decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
+    user_id = decoded_token.get("user_id")
+    user = await User.get(id=user_id)
+    return user
 
 
 import uvicorn
