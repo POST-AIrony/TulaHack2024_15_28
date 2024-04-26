@@ -4,7 +4,7 @@ def ml_pass(messages: list[dict[str, str]]):
 
     messages.append(
         {
-            "role": "model",
+            "role": "bot",
             "message": answer,
         }
     )
