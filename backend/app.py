@@ -22,12 +22,28 @@ async def lifespan(app: FastAPI):
     yield
 
 
+secret_key = "allelleo"
+
 app = FastAPI(title="TulaHack", lifespan=lifespan)
 
 
 @app.post("/sign-in")
 async def sign_in(data: SignInRequest):
-    pass
+
+    try:
+        user = await User.get(email=data.email)
+    except:
+        raise
+    if not user.password == data.password:
+        raise
+    return {
+        "token": jwt.encode(
+            {"user_id": user.id},
+            secret_key,
+            algorithm="HS256",
+            headers={"alg": "HS256", "typ": "JWT"},
+        ).decode("utf-8")
+    }
 
 
 @app.post("/sign-up")
