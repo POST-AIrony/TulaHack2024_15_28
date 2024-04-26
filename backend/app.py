@@ -2,9 +2,9 @@ import asyncio
 
 import jwt
 from fastapi import FastAPI
+from models.models import Conversation, User
+from schemas import SignInRequest, SignUpRequest
 from tortoise import Model, Tortoise, fields
-
-from .schemas import SignInRequest, SignUpRequest
 
 
 async def init():
