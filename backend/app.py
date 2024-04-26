@@ -32,7 +32,23 @@ async def sign_in(data: SignInRequest):
 
 @app.post("/sign-up")
 async def sign_up(data: SignUpRequest):
-    pass
+    if await User.exists(username=data.username):
+        raise
+
+    if await User.exists(email=data.email):
+        raise
+
+    user = User(
+        username=data.username,
+        email=data.email,
+        password=data.password,
+        first_name=data.first_name,
+        last_name=data.last_name,
+    )
+
+    await user.save()
+
+    return {"user_id": user.id}
 
 
 import uvicorn
