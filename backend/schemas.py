@@ -19,3 +19,9 @@ class CreateChatRequest(BaseModel):
     title: str
     is_public: bool
     is_accepted: bool
+
+class NewMessageRequest(BaseModel):
+    token: str
+    chat_id: str
+    message: str
+    

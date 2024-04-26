@@ -2,8 +2,9 @@ import asyncio
 
 import jwt
 from fastapi import FastAPI
+from ml import ml_pass
 from models.models import Chat, User
-from schemas import CreateChatRequest, SignInRequest, SignUpRequest
+from schemas import CreateChatRequest, NewMessageRequest, SignInRequest, SignUpRequest
 from tortoise import Model, Tortoise, fields
 
 
@@ -108,6 +109,23 @@ async def get_chats(token: str):
         messages = len(chat.conversation) // 2
         chats.append({"title": chat.title, "messages_count": messages})
     return chats
+
+
+@app.post("/chat/message")
+async def new_message(data: NewMessageRequest):
+    decoded_token = jwt.decode(data.token, secret_key, algorithms=["HS256"])
+    user_id = decoded_token.get("user_id")
+    user = await User.get(id=user_id)
+
+    chat = await Chat.get(id=data.chat_id)
+    messages = chat.conversation
+    messages.append({"role": "user", "message": data.message})
+
+    #! TODO SEND MESSAGES TO ML
+    messages, answer = ml_pass(messages)
+    chat.messsages = messages
+    await chat.save()
+    return {"answer": answer}
 
 
 import uvicorn
