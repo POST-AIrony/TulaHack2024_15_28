@@ -1,1 +1,1 @@
-allelleo NA x#e
+allelleo NA X Æ A-12
