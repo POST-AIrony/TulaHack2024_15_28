@@ -2,8 +2,8 @@ import asyncio
 
 import jwt
 from fastapi import FastAPI
-from models.models import Conversation, User
-from schemas import SignInRequest, SignUpRequest
+from models.models import Chat, User
+from schemas import CreateChatRequest, SignInRequest, SignUpRequest
 from tortoise import Model, Tortoise, fields
 
 
@@ -75,7 +75,42 @@ async def protected(token: str):
     return user
 
 
+@app.post("/chat")
+async def create_chat(data: CreateChatRequest):
+    decoded_token = jwt.decode(data.token, secret_key, algorithms=["HS256"])
+    user_id = decoded_token.get("user_id")
+    user = await User.get(id=user_id)
+    chat = Chat(
+        title=data.title,
+        conversation={},
+        is_public=data.is_public,
+        is_accepted=data.is_accepted,
+        user_id=user,
+    )
+
+    await chat.save()
+
+    chats = []
+    for chat in await Chat.filter(user_id=user):
+        messages = len(chat.conversation) // 2
+        chats.append({"title": chat.title, "messages_count": messages})
+    return chats
+
+
+@app.get("/chats")
+async def get_chats(token: str):
+    decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
+    user_id = decoded_token.get("user_id")
+    user = await User.get(id=user_id)
+
+    chats = []
+    for chat in await Chat.filter(user_id=user):
+        messages = len(chat.conversation) // 2
+        chats.append({"title": chat.title, "messages_count": messages})
+    return chats
+
+
 import uvicorn
 
-if __name__ == "__main__":
-    uvicorn.run(app)
+# if __name__ == "__main__":
+#     uvicorn.run(app)

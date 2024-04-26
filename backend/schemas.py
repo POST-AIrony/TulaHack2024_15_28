@@ -12,3 +12,10 @@ class SignUpRequest(BaseModel):
 class SignInRequest(BaseModel):
     email: str
     password: str
+
+
+class CreateChatRequest(BaseModel):
+    token: str
+    title: str
+    is_public: bool
+    is_accepted: bool

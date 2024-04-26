@@ -13,10 +13,10 @@ class User(Model):
     is_admin = fields.BooleanField(default=False)
 
 
-class Conversation(Model):
+class Chat(Model):
     id = fields.IntField(pk=True)
+    title = fields.CharField(max_length=100)
     conversation = fields.JSONField()
     user_id = fields.ForeignKeyField("models.User")
     is_public = fields.BooleanField(default=True)
     is_accepted = fields.BooleanField(default=True)
-    parent_conversation = fields.IntField()
