@@ -2,6 +2,7 @@ import asyncio
 
 import jwt
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from ml import ml_pass
 from models.models import Chat, User
 from schemas import (
@@ -193,7 +194,13 @@ async def get_message(token: str, chat_id: int):
     return {"messages": messages}
 
 
-import uvicorn
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # if __name__ == "__main__":
 #     uvicorn.run(app)
