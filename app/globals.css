@@ -110,3 +110,16 @@ body {
 .login:hover:after {
   opacity: 1;
 }
+
+.predlog{
+  color: #656565;
+  margin-left: 38%;
+  margin-top: 5%;
+}
+
+.otvet{
+  color: white;
+  margin-left:37%;
+
+}
+
