@@ -60,6 +60,7 @@ def convert_to_tokens(messages: List[Dict[str, str]], model: Any) -> List[int]:
         content = message["message"]
         message_tokens = get_message_tokens(model, role, content)
         tokens.extend(message_tokens)
+    tokens.extend(get_message_tokens(model, **system_message))
     return tokens
 
 

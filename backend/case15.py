@@ -185,10 +185,11 @@ async def edit_message(data: EditMessageRequest):
         else:
             new_messages.append(message)
 
-    answer = "test"  #interact_history(model, messages)
-    chat.conversation.append(
+    answer = interact_history(model, new_messages)
+    new_messages.append(
         {"role": "bot", "message": answer}
     )
+    chat.conversation = new_messages
     print(new_messages)
     await chat.save()
     chat = await Chat.get(id=data.chat_id)
