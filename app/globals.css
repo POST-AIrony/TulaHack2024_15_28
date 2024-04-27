@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: #212121;
+  background-image: linear-gradient(-30deg, #151515, #1E1E1E);
 }
 
 .text-align{
@@ -170,4 +170,42 @@ body {
 
 .anim{
   transition: 0.5s;
+}
+
+.text{
+  margin-top: 430px;
+  color: white;
+  margin-left: 355px;
+}
+
+.p-center-two{
+  background: linear-gradient(
+    to right,
+    #ffdb5e 20%,
+    #9002ff 30%,
+    #ffdb5e 70%,
+    #9002ff 80%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 500% auto;
+  animation: textShine 5s ease-in-out infinite alternate;
+}
+
+.omg{
+  color: white;
+  height: 100px;
+  width: 1000px;
+  margin-top: 1%;
+  margin-left: 19.5%;
+}
+
+.nachat{
+  color: white;
+  margin-top: 10%;
+  margin-left: 40%;
+  transition: 0.5s;
+  font-size: 30px;
+  background-color: #8F02FF;
 }

@@ -23,7 +23,7 @@ export default function Home() {
           
           
         <Link
-          href="/signIn"
+          href="/chat"
           className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-medium login button"
         >
           Войти
