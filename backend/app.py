@@ -1,19 +1,7 @@
-import jwt
 from case15 import case15
 from case28 import case28
-from constant import MODEL_PATH
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from llama_cpp import Llama
-from models.models import Chat, User
-from schemas import (
-    CreateChatRequest,
-    EditMessageRequest,
-    GetMessageRequest,
-    NewMessageRequest,
-    SignInRequest,
-    SignUpRequest,
-)
 from tortoise import Model, Tortoise, fields
 
 
