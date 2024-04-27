@@ -47,3 +47,12 @@ class PublicChatCreate(BaseModel):
 class ChatCreate(BaseModel):
     public_chat_id: int
     token: str
+
+
+################# 28 case
+
+
+class CreateChat28(BaseModel):
+    token: str
+    title: str
+    dialog: str

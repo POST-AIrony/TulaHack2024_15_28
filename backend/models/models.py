@@ -47,3 +47,21 @@ class PublicChat(Model):
             "user_id": await user.json(),
             "is_accepted": self.is_accepted,
         }
+
+
+class Chat28(Model):
+    id = fields.IntField(pk=True)
+    title = fields.CharField(max_length=100)
+    manager_conversation = fields.JSONField()
+    bot_answer = fields.TextField(nulll=True)
+    user_id = fields.ForeignKeyField("models.User")
+
+    async def json(self):
+        user = await self.user_id.get()
+        return {
+            "id": self.id,
+            "title": self.title,
+            "manager_conversation": self.manager_conversation,
+            "bot_answer": self.bot_answer,
+            "user_id": await user.json(),
+        }

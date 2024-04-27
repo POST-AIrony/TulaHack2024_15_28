@@ -1,4 +1,5 @@
 from case15 import case15
+from case28 import case28
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise import Tortoise
@@ -22,6 +23,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="TulaHack", lifespan=lifespan)
 
 app.include_router(case15, tags=["case15"])
+app.include_router(case28, tags=["case28"])
 
 app.add_middleware(
     CORSMiddleware,
