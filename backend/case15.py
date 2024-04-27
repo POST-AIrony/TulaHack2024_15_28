@@ -1,8 +1,11 @@
 import asyncio
 
 import jwt
+from constant import MODEL_PATH
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from llama_cpp import Llama
+from ml import interact_history
 from models.models import Chat, PublicChat, User
 from schemas import (
     ChatCreate,
@@ -15,16 +18,16 @@ from schemas import (
     SignUpRequest,
 )
 from tortoise import Model, Tortoise, fields
-from ml import interact_history
-from llama_cpp import Llama
-from constant import MODEL_PATH
+
 model = Llama(
-        model_path=MODEL_PATH,
-        n_gpu_layers=-1,
-        n_batch=512,
-        n_ctx=4096,
-        n_parts=1,
+    model_path=MODEL_PATH,
+    n_gpu_layers=-1,
+    n_batch=512,
+    n_ctx=4096,
+    n_parts=1,
 )
+
+
 async def init():
     await Tortoise.init(
         db_url="sqlite://db.sqlite3",  # Подставьте путь к файлу SQLite
@@ -155,10 +158,8 @@ async def new_message(data: NewMessageRequest):
     )
 
     #! TODO SEND MESSAGES TO ML
-    answer = interact_history(model, messages) # "test" 
-    chat.conversation.append(
-        {"role": "bot", "message": answer}
-    )
+    answer = interact_history(model, messages)  # "test"
+    chat.conversation.append({"role": "bot", "message": answer})
     await chat.save()
     return {"answer": answer}
 
@@ -186,9 +187,7 @@ async def edit_message(data: EditMessageRequest):
             new_messages.append(message)
 
     answer = interact_history(model, new_messages)
-    new_messages.append(
-        {"role": "bot", "message": answer}
-    )
+    new_messages.append({"role": "bot", "message": answer})
     chat.conversation = new_messages
     print(new_messages)
     await chat.save()
@@ -252,11 +251,12 @@ async def send_chat_to_public(token: str, public_id: int):
 
 
 @case15.get("/chat/public")
-async def get_publics():
+async def get_publics(start: int, stop: int):
     chats = await PublicChat.filter(is_accepted=True)
     data = []
     for chat in chats:
-        data.append(await chat.json())
+        if chat.id in range(start, stop):
+            data.append(await chat.json())
     return data
 
 
