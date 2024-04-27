@@ -1,5 +1,5 @@
 header {
-    @apply absolute flex justify-between items-center px-[40px] w-full h-[100px] bg-[#1e1e1e];
+    @apply absolute flex justify-between items-center deskWide:mx-[calc((100%-1920px)/2)] px-[40px] w-full max-w-[1920px] h-[100px] bg-[#1e1e1e];
 }
 
 .logo{

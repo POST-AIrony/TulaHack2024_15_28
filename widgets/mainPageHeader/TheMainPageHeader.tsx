@@ -2,9 +2,9 @@ import React from "react";
 
 import Link from "next/link";
 
-import "./TheHeader.css";
+import "./TheMainPageHeader.css";
 
-const TheHeader = () => {
+const TheMainPageHeader = () => {
   return (
     <header>
       <Link href="/" className="flex items-center">
@@ -29,7 +29,7 @@ const TheHeader = () => {
 
         <Link
           href="/signIn"
-          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-[Montserrat_Alternates] font-medium login"
+          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-medium login"
         >
           Войти
         </Link>
@@ -38,4 +38,4 @@ const TheHeader = () => {
   );
 };
 
-export default TheHeader;
+export default TheMainPageHeader;
