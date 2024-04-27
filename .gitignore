@@ -183,3 +183,6 @@ cython_debug/
 #.idea/
 model-q8_0.gguf
 Финальный вариант.mp4
+backend/db.sqlite3-shm
+backend/db.sqlite3-wal
+
