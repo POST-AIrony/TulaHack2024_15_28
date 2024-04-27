@@ -7,7 +7,16 @@ from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from models.models import Chat, Chat28, PublicChat, User
 from schemas import CreateChat28, SignInRequest, SignUpRequest
-
+from ml import interact_manager
+from llama_cpp import Llama
+from constant import MODEL_PATH
+model = Llama(
+    model_path=MODEL_PATH,
+    n_gpu_layers=-1,
+    n_batch=512,
+    n_ctx=4096,
+    n_parts=1,
+)
 secret_key = "allelleo"
 
 
@@ -87,20 +96,19 @@ async def create_chat(data: CreateChat28):
     decoded_token = jwt.decode(data.token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
+    json_conversation = text2json(data.dialog)
+    answer = interact_manager(model)
     chat = Chat28(
         title=data.title,
-        manager_conversation=text2json(data.dialog),
+        manager_conversation=json_conversation,
         user_id=user,
+        bot_answer = answer
     )
-    await chat.save()
-
-    answer = "hello"  # TODO USE text2json
-    chat.bot_answer = answer
     await chat.save()
 
     data = {}
 
-    data["manager_conversation"] = text2json(chat.manager_conversation)
+    data["manager_conversation"] = json_conversation
     data["answer"] = answer
 
     return data
