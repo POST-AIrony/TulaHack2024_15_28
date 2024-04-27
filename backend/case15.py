@@ -28,21 +28,6 @@ model = Llama(
 )
 
 
-async def init():
-    await Tortoise.init(
-        db_url="sqlite://db.sqlite3",  # Подставьте путь к файлу SQLite
-        modules={
-            "models": ["models.models"]
-        },  # Подставьте имя модуля, где определены ваши модели
-    )
-    await Tortoise.generate_schemas()
-
-
-async def lifespan(app: FastAPI):
-    await init()
-    yield
-
-
 def get_count_of_user_messages(messages):
     count = 0
     for msg in messages:

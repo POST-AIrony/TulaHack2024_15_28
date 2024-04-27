@@ -3,12 +3,22 @@ from fastapi import APIRouter
 case28 = APIRouter()
 
 import jwt
+from constant import MODEL_PATH
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from llama_cpp import Llama
 from models.models import Chat, Chat28, PublicChat, User
 from schemas import CreateChat28, SignInRequest, SignUpRequest
 
 secret_key = "allelleo"
+
+model = Llama(
+    model_path=MODEL_PATH,
+    n_gpu_layers=-1,
+    n_batch=512,
+    n_ctx=4096,
+    n_parts=1,
+)
 
 
 def text2json(dialog_str):

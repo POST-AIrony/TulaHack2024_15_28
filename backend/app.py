@@ -1,8 +1,10 @@
+import jwt
 from case15 import case15
 from case28 import case28
-import jwt
+from constant import MODEL_PATH
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from llama_cpp import Llama
 from models.models import Chat, User
 from schemas import (
     CreateChatRequest,
@@ -27,6 +29,7 @@ async def init():
 
 async def lifespan(app: FastAPI):
     await init()
+
     yield
 
 
@@ -44,6 +47,7 @@ app = FastAPI(title="TulaHack", lifespan=lifespan)
 
 app.include_router(case15, tags=["case15"])
 app.include_router(case28, tags=["case28"])
+
 
 @app.post("/sign-in")
 async def sign_in(data: SignInRequest):
@@ -193,6 +197,7 @@ async def get_message(token: str, chat_id: int):
     messages = chat.conversation
 
     return {"messages": messages}
+
 
 app.add_middleware(
     CORSMiddleware,
