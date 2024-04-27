@@ -89,7 +89,7 @@ async def create_chat(data: CreateChat28):
     user = await User.get(id=user_id)
     chat = Chat28(
         title=data.title,
-        manager_conversation=data.dialog,
+        manager_conversation=text2json(data.dialog),
         user_id=user,
     )
     await chat.save()
