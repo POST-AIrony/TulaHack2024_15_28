@@ -11,6 +11,29 @@ from schemas import CreateChat28, SignInRequest, SignUpRequest
 secret_key = "allelleo"
 
 
+def text2json(dialog_str):
+    """
+    Функция для преобразования диалога клиент-сотрудник в формат JSON.
+
+    Аргументы:
+    dialog_str (str): Строка с диалогом клиент-сотрудник.
+
+    Возвращает:
+    str: Строка в формате JSON, представляющая диалог.
+    """
+    dialog_list = dialog_str.split("\n")
+    dialog = []
+    for line in dialog_list:
+        speaker, message = line.split(": ")
+        dialog.append((speaker.strip(), message.strip()))
+
+    manager_conversation = []
+    for speaker, message in dialog:
+        manager_conversation.append({"speaker": speaker, "message": message})
+
+    return manager_conversation
+
+
 @case28.post("/sign-in")
 async def sign_in(data: SignInRequest):
 
@@ -71,11 +94,16 @@ async def create_chat(data: CreateChat28):
     )
     await chat.save()
 
-    answer = "hello"  # TODO
+    answer = "hello"  # TODO USE text2json
     chat.bot_answer = answer
     await chat.save()
 
-    return answer
+    data = {}
+
+    data["manager_conversation"] = text2json(chat.manager_conversation)
+    data["answer"] = answer
+
+    return data
 
 
 @case28.get("/chat")
