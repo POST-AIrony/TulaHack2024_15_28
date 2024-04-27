@@ -37,3 +37,13 @@ class EditMessageRequest(BaseModel):
 class GetMessageRequest(BaseModel):
     token: str
     chat_id: int
+
+
+class PublicChatCreate(BaseModel):
+    token: str
+    chat_id: int
+
+
+class ChatCreate(BaseModel):
+    public_chat_id: int
+    token: str
