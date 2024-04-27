@@ -83,7 +83,20 @@ body {
   transition: 0.5s;
 }
 
-.input{
+.inputlog{
+  font-size: 32px;
+  height: 75px;
+  width: 420px;
+  background-color: #202020;
+  color: #656565;
+  margin: 20px;
+  border-radius: 50px;
+  padding: 30px;
+  margin-left: 17%;
+  transition: 0.5s;
+}
+
+.inputsign{
   font-size: 32px;
   height: 75px;
   width: 504px;

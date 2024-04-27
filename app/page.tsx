@@ -57,7 +57,7 @@ export default function Home() {
                 />
 
                 <p className="mt-[30px] text-[#ffffff] text-[20px] text-center font-['Montserrat'] font-medium">
-                  {teamMember.name} {teamMember.specialization}
+                  {teamMember.name}<br/> {teamMember.specialization}
                 </p>
 
                 <p className="text-[#ffffff] text-[20px] text-center font-['Montserrat'] font-medium">

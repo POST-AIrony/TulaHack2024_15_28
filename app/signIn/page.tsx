@@ -18,8 +18,8 @@ export default function Home() {
           { islogin ? (
           <div className="bubble anim">
           <h1 className="inline-block text-transparent bg-clip-text text-[8rem] font-['Montserrat_Alternates'] font-extrabold log">Вход</h1>
-          <input type="text" placeholder="Имя пользователя" className="font-['Montserrat_Alternates'] font-extrabold input"/><br/>
-          <input type="password" placeholder="Пароль" className="font-['Montserrat_Alternates'] font-extrabold input"/>
+          <input type="text" placeholder="Имя пользователя" className="font-['Montserrat_Alternates'] font-extrabold inputlog"/><br/>
+          <input type="password" placeholder="Пароль" className="font-['Montserrat_Alternates'] font-extrabold inputlog"/>
           
           
         <Link
@@ -37,9 +37,9 @@ export default function Home() {
         (
         	<div className="bubble2 anim">
           <h1 className="inline-block text-transparent bg-clip-text text-[8rem] font-['Montserrat_Alternates'] font-extrabold sig">Регистрация</h1>
-          <input type="text" placeholder="Имя пользователя" className="font-['Montserrat_Alternates'] font-extrabold input"/><br/>
-          <input type="password" placeholder="Пароль" className="font-['Montserrat_Alternates'] font-extrabold input"/><br/>
-          <input type="email" placeholder="Почта" className="font-['Montserrat_Alternates'] font-extrabold input"/>
+          <input type="text" placeholder="Имя пользователя" className="font-['Montserrat_Alternates'] font-extrabold inputsign"/><br/>
+          <input type="password" placeholder="Пароль" className="font-['Montserrat_Alternates'] font-extrabold inputsign"/><br/>
+          <input type="email" placeholder="Почта" className="font-['Montserrat_Alternates'] font-extrabold inputsign"/>
           
         <Link
           href="/signIn"
