@@ -11,7 +11,7 @@ const TheHeader = () => {
         <img
           src="/static/EpicLabLogo.svg"
           alt=""
-          className="w-[70px] h-[70px]"
+          className="logo"
         />
 
         <h2 className="ml-[20px] text-[#ffffff] text-[2.5rem] font-['Montserrat_Alternates'] font-medium">
@@ -22,14 +22,14 @@ const TheHeader = () => {
       <nav className="flex items-center">
         <Link
           href="/userStories"
-          className="bg-gradient-to-r from-[#ffdb5e] to-[#9002ff] inline-block text-transparent bg-clip-text text-[2rem] font-['Montserrat_Alternates'] font-medium"
+          className="bg-gradient-to-r from-[#ffdb5e] to-[#9002ff] inline-block text-transparent bg-clip-text text-[2rem] font-['Montserrat_Alternates'] font-medium btn_default p"
         >
           Истории пользователей
         </Link>
 
         <Link
           href="/signIn"
-          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px] bg-[#ffffff] rounded-[50px] text-[#000000] text-[2rem] font-[Montserrat_Alternates] font-medium"
+          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-[Montserrat_Alternates] font-medium login"
         >
           Войти
         </Link>
