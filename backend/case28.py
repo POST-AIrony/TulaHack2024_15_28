@@ -7,18 +7,10 @@ from constant import MODEL_PATH
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from llama_cpp import Llama
+from ml import interact_manager
 from models.models import Chat, Chat28, PublicChat, User
 from schemas import CreateChat28, SignInRequest, SignUpRequest
-from ml import interact_manager
-from llama_cpp import Llama
-from constant import MODEL_PATH
-model = Llama(
-    model_path=MODEL_PATH,
-    n_gpu_layers=-1,
-    n_batch=512,
-    n_ctx=4096,
-    n_parts=1,
-)
+
 secret_key = "allelleo"
 
 model = Llama(
@@ -112,7 +104,7 @@ async def create_chat(data: CreateChat28):
         title=data.title,
         manager_conversation=json_conversation,
         user_id=user,
-        bot_answer = answer
+        bot_answer=answer,
     )
     await chat.save()
 
