@@ -3,7 +3,6 @@ import asyncio
 import jwt
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from ml import ml_pass
 from models.models import Chat, PublicChat, User
 from schemas import (
     ChatCreate,
@@ -148,8 +147,10 @@ async def new_message(data: NewMessageRequest):
     )
 
     #! TODO SEND MESSAGES TO ML
-    messages, answer = ml_pass(messages)
-    chat.messsages = messages
+    answer = "test"  #interact_history(model, messages)
+    chat.conversation.append(
+        {"role": "bot", "message": answer}
+    )
     await chat.save()
     return {"answer": answer}
 
@@ -176,8 +177,10 @@ async def edit_message(data: EditMessageRequest):
         else:
             new_messages.append(message)
 
-    messages, answer = ml_pass(new_messages)
-    chat.conversation = new_messages
+    answer = "test"  #interact_history(model, messages)
+    chat.conversation.append(
+        {"role": "bot", "message": answer}
+    )
     print(new_messages)
     await chat.save()
     chat = await Chat.get(id=data.chat_id)
