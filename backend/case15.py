@@ -15,8 +15,16 @@ from schemas import (
     SignUpRequest,
 )
 from tortoise import Model, Tortoise, fields
-
-
+from ml import interact_history
+from llama_cpp import Llama
+from constant import MODEL_PATH
+model = Llama(
+        model_path=MODEL_PATH,
+        n_gpu_layers=-1,
+        n_batch=512,
+        n_ctx=4096,
+        n_parts=1,
+)
 async def init():
     await Tortoise.init(
         db_url="sqlite://db.sqlite3",  # Подставьте путь к файлу SQLite
@@ -147,7 +155,7 @@ async def new_message(data: NewMessageRequest):
     )
 
     #! TODO SEND MESSAGES TO ML
-    answer = "test"  #interact_history(model, messages)
+    answer = interact_history(model, messages) # "test" 
     chat.conversation.append(
         {"role": "bot", "message": answer}
     )

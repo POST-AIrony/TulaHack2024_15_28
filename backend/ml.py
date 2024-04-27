@@ -144,9 +144,9 @@ def interact_history(
 
         if token == model.token_eos():
             break
-        yield model.detokenize([token]).decode("utf-8", errors="ignore")
+        # yield model.detokenize([token]).decode("utf-8", errors="ignore")
 
-    # return token_str
+    return token_str
 
 
 def interact_manager(
