@@ -5,9 +5,6 @@ import { teamList } from "@/data/team";
 export default function Home() {
   return (
     <>
-
-      {/*fdssf*/}
-
       <main className="w-full h-auto">
         <div className=" w-full h-[1080px] bg-[url('/static/purple.svg')]">
           <h1 className="bg-gradient-to-r from-[#9002ff] to-[#ffdb5e] inline-block text-transparent bg-clip-text text-[8rem] font-['Montserrat_Alternates'] font-extrabold p-center">
@@ -20,7 +17,7 @@ export default function Home() {
           
         <Link
           href="/signIn"
-          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-[Montserrat_Alternates] font-medium login button"
+          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-medium login button"
         >
           Войти
         </Link>
