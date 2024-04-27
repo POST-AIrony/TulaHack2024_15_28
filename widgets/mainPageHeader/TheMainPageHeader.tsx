@@ -22,14 +22,14 @@ const TheMainPageHeader = () => {
       <nav className="flex items-center">
         <Link
           href="/userStories"
-          className="bg-gradient-to-r from-[#ffdb5e] to-[#9002ff] inline-block text-transparent bg-clip-text text-[2rem] font-['Montserrat_Alternates'] font-medium btn_default p"
+          className="bg-gradient-to-r from-[#ffdb5e] to-[#9002ff] inline-block text-transparent bg-clip-text text-[2rem] font-['Montserrat_Alternates'] font-medium btn_default p outline-none"
         >
           Истории пользователей
         </Link>
 
         <Link
           href="/signIn"
-          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-medium login"
+          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-medium login outline-none"
         >
           Войти
         </Link>
