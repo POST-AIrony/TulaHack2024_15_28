@@ -1,0 +1,3 @@
+header {
+    @apply relative flex justify-center items-center deskWide:mx-[calc((100%-1920px)/2)] px-[50px] w-full max-w-[1920px] h-[125px];
+}
