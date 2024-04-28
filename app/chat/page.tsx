@@ -18,7 +18,7 @@ export default function Home() {
 создания Ваших захватывающих историй.</h1>
         <Link
           href="/chat"
-          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-bold login nachat">
+          className="flex justify-center items-center ml-[100px] w-[210px] h-[60px]  font-['Montserrat_Alternates'] font-bold  nachat oreol">
           Начать
         </Link>
         	
