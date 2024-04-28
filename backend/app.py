@@ -2,7 +2,7 @@ from case15 import case15
 from case28 import case28
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from tortoise import Model, Tortoise, fields
+from tortoise import Tortoise
 
 
 async def init():

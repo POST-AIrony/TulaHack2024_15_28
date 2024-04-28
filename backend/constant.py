@@ -21,7 +21,7 @@ SYSTEM_TOKEN = 1587
 USER_TOKEN = 2188
 BOT_TOKEN = 12435
 LINEBREAK_TOKEN = 13
-
+secret_key = "allelleo"
 ROLE_TOKENS = {
     "user": USER_TOKEN,
     "bot": BOT_TOKEN,
