@@ -15,15 +15,15 @@ services:
               count: all
               capabilities: [ gpu ]
 
-  frontend:
-    build:
-      context: frontend/
-      dockerfile: Dockerfile
-    container_name: backend
-    command: >
-      bash -c "npm run build"
-    volumes:
-      - frontend_volume:/app/build
+#  frontend:
+#    build:
+#      context: frontend/
+#      dockerfile: Dockerfile
+#    container_name: backend
+#    command: >
+#      bash -c "npm run build"
+#    volumes:
+#      - frontend_volume:/app/build
 
   nginx:
     build:
@@ -32,10 +32,10 @@ services:
     container_name: nginx
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-      - frontend_volume:/usr/share/nginx/html
+#      - frontend_volume:/usr/share/nginx/html
     depends_on:
       - backend
-      - frontend
+#      - frontend
     ports:
       - "80:80"
       - "443:443"
@@ -43,5 +43,5 @@ services:
 
 
 
-volumes:
-  frontend_volume:
+#volumes:
+#  frontend_volume:
