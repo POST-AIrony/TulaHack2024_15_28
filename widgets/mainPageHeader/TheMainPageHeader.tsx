@@ -18,7 +18,6 @@ const TheMainPageHeader = () => {
           EpicLab
         </h2>
       </Link>
-
       <nav className="flex items-center">
         <Link
           href="/userStories"

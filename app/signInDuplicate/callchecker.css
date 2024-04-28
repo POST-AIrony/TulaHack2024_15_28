@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.callchecker_body {
+  background-image: linear-gradient(45deg, #8DEAFF, #1681FF);
+}
+
+.robotsvg{
+  position:absolute;
+  width: 765;
+  margin-left: 956px;
+  top:88px;
+}
+
+.white{
+  position: absolute;
+  top:0;
+  left: 0;
+  background-color: #FFFFFF;
+  height: 1080px;
+  width: 870px;
+}
+
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.logotype{
+    position: absolute;
+    margin: 5px;
+    font-size: 100px;
+    left: 67px;
+    top:86px;
+    background: linear-gradient(
+      to right,
+      #8DEAFF 20%,
+      #1681FF 30%,
+      #8DEAFF 70%,
+      #1681FF 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+  }
+
+h2{
+  position: absolute;
+    font-size: 25px;
+    top: 232px;
+    left:67px;
+    width: 500px;
+  }
+
+h3{
+  position: absolute;
+  font-size: 40px;
+  top: 370px;
+  left:67px;
+  width: 645px;
+}
+
+.buttonglav{
+  position: absolute;
+  margin: 5px;
+  font-size: 100px;
+  left: 250px;
+  width: 304px;
+  height: 62px;
+  top:895px;
+background: linear-gradient(
+  to right,
+  #8DEAFF 20%,
+  #1681FF 30%,
+  #8DEAFF 70%,
+  #1681FF 80%
+);
+border-radius: 20px;
+-webkit-text-fill-color: transparent;
+background-size: 500% auto;
+animation: textShine 5s ease-in-out infinite alternate;
+}
+
+.vxod{
+  position: absolute;
+  top:650px;
+  left: 300px;
+  width: 200px;
+  height: 60px;
+  background: linear-gradient(
+  to right,
+  #8DEAFF 20%,
+  #1681FF 30%,
+  #8DEAFF 70%,
+  #1681FF 80%
+);
+border-radius: 25px;
+background-size: 500% auto;
+animation: textShine 5s ease-in-out infinite alternate;
+}
+
+.footer{
+  position: absolute;
+  top:950px;
+}
+
+.signto{
+  height: 50px;
+  position: absolute;
+  background-color: white;
+  color: black;
+  width: 120px;
+  border-radius: 10px;
+  right: -872px;
+  top:0;
+}
+
+.voity{
+position: absolute;
+top: 388px;
+left: 316px;
+font-size: 64px;
+}
+
+.inputlogcc{
+  position: relative;
+border-radius: 20px;
+background-color: #DEDEDE;
+font-size: 25px;
+padding: 5px;
+top: 500px;
+left: 210px;
+margin:15px;
+color: #575757;
+
+
+}
+
+.predlogcc{
+  position: absolute;
+  color: #000000;
+  left: 8px;
+  top: 100px;
+  width: 250px;
+font-size: 20px;
+  transition: 0.5s;
+}
+
+.otvetcc{
+  position: absolute;
+  color: #1681FF;
+  left: 2px;
+  top: 125px;
+font-size: 20px;
+  transition: 0.5s;
+}
