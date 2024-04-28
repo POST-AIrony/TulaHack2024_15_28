@@ -118,7 +118,7 @@ async def create_chat(data: CreateChat28):
 
 @case28.get("/chat")
 async def get_chats(token: str):
-    decoded_token = jwt.decode(data.token, secret_key, algorithms=["HS256"])
+    decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
 
