@@ -1,6 +1,7 @@
 import jwt
 from constant import secret_key
 from fastapi import APIRouter, HTTPException
+from just_model import model
 from ml import interact_history
 from models.models import Chat, PublicChat, User
 from schemas import (
@@ -12,7 +13,6 @@ from schemas import (
     SignInRequest,
     SignUpRequest,
 )
-from just_model import model
 
 
 def get_count_of_user_messages(messages):
@@ -47,18 +47,12 @@ async def sign_in(data: SignInRequest):
 
 @case15.post("/sign-up")
 async def sign_up(data: SignUpRequest):
-    if await User.exists(username=data.username):
+    if await User.exists(email=data.email):
         raise HTTPException(status_code=409, detail="email unique")
 
-    if await User.exists(email=data.email):
-        raise HTTPException(status_code=409, detail="username unique")
-
     user = User(
-        username=data.username,
         email=data.email,
         password=data.password,
-        first_name=data.first_name,
-        last_name=data.last_name,
     )
 
     await user.save()
