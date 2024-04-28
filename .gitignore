@@ -186,3 +186,5 @@ model-q8_0.gguf
 backend/db.sqlite3-shm
 backend/db.sqlite3-wal
 
+db.sqlite3-shm
+db.sqlite3-wal
