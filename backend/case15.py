@@ -1,31 +1,18 @@
-import asyncio
-
 import jwt
-from constant import MODEL_PATH
-from fastapi import APIRouter, FastAPI, HTTPException, Request
-from fastapi.middleware.cors import CORSMiddleware
-from llama_cpp import Llama
+from constant import secret_key
+from fastapi import APIRouter, HTTPException
 from ml import interact_history
 from models.models import Chat, PublicChat, User
 from schemas import (
     ChatCreate,
     CreateChatRequest,
     EditMessageRequest,
-    GetMessageRequest,
     NewMessageRequest,
     PublicChatCreate,
     SignInRequest,
     SignUpRequest,
 )
-from tortoise import Model, Tortoise, fields
-
-model = Llama(
-    model_path=MODEL_PATH,
-    n_gpu_layers=-1,
-    n_batch=512,
-    n_ctx=4096,
-    n_parts=1,
-)
+from just_model import model
 
 
 def get_count_of_user_messages(messages):
@@ -35,8 +22,6 @@ def get_count_of_user_messages(messages):
             count += 1
     return count
 
-
-secret_key = "allelleo"
 
 case15 = APIRouter(prefix="/case15")
 
@@ -253,7 +238,7 @@ async def copy_chat(data: ChatCreate):
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
 
-    public = await PublicChat.get(id=data.chat_id)
+    public = await PublicChat.get(id=data.public_chat_id)
     user_chat = Chat(
         title=public.title,
         conversation=public.conversation,
