@@ -214,7 +214,7 @@ async def send_chat_to_public(token: str, public_id: int):
     user = await User.get(id=user_id)
 
     if not user.is_admin:
-        raise
+        raise HTTPException(status_code=401, detail="not admin")
 
     public_chat = await PublicChat.get(id=public_id)
     public_chat.is_accepted = True
@@ -223,13 +223,13 @@ async def send_chat_to_public(token: str, public_id: int):
 
 
 @case15.get("/chat/public/moderation/all")
-async def send_chat_to_public(token: str, public_id: int):
+async def send_chat_to_public(token: str):
     decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
 
     if not user.is_admin:
-        raise
+        raise HTTPException(status_code=401, detail="not admin")
     data = []
     public_chat = await PublicChat.all()
     for chat in public_chat:
