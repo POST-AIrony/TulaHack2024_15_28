@@ -253,7 +253,7 @@ async def copy_chat(data: ChatCreate):
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
 
-    public = await PublicChat.get(id=data.chat_id)
+    public = await PublicChat.get(id=data.public_chat_id)
     user_chat = Chat(
         title=public.title,
         conversation=public.conversation,
