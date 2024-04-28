@@ -12,7 +12,6 @@ class User(Model):
     async def json(self):
         return {
             "id": self.id,
-            "username": self.username,
             "email": self.email,
             "is_admin": self.is_admin,
         }
