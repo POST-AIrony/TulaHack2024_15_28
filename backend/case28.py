@@ -1,13 +1,25 @@
 from fastapi import APIRouter
-import jwt
-from constant import secret_key
-from fastapi import APIRouter
-from ml import interact_manager
-from models.models import Chat28, User
-from schemas import CreateChat28, SignInRequest, SignUpRequest
-from just_model import model
 
 case28 = APIRouter()
+
+import jwt
+from constant import MODEL_PATH
+from fastapi import APIRouter, FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from llama_cpp import Llama
+from ml import interact_manager
+from models.models import Chat, Chat28, PublicChat, User
+from schemas import CreateChat28, SignInRequest, SignUpRequest
+
+secret_key = "allelleo"
+
+model = Llama(
+    model_path=MODEL_PATH,
+    n_gpu_layers=-1,
+    n_batch=512,
+    n_ctx=4096,
+    n_parts=1,
+)
 
 
 def text2json(dialog_str):
@@ -39,9 +51,9 @@ async def sign_in(data: SignInRequest):
     try:
         user = await User.get(email=data.email)
     except:
-        raise
+        raise HTTPException(status_code=404, detail="user not found")
     if not user.password == data.password:
-        raise
+        raise HTTPException(status_code=401, detail="wrong password")
     return {
         "token": jwt.encode(
             {"user_id": user.id},
@@ -55,10 +67,10 @@ async def sign_in(data: SignInRequest):
 @case28.post("/sign-up")
 async def sign_up(data: SignUpRequest):
     if await User.exists(username=data.username):
-        raise
+        raise HTTPException(status_code=409, detail="email unique")
 
     if await User.exists(email=data.email):
-        raise
+        raise HTTPException(status_code=409, detail="username unique")
 
     user = User(
         username=data.username,

@@ -1,18 +1,31 @@
+import asyncio
+
 import jwt
-from fastapi import APIRouter
+from constant import MODEL_PATH
+from fastapi import APIRouter, FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from llama_cpp import Llama
 from ml import interact_history
 from models.models import Chat, PublicChat, User
 from schemas import (
     ChatCreate,
     CreateChatRequest,
     EditMessageRequest,
+    GetMessageRequest,
     NewMessageRequest,
     PublicChatCreate,
     SignInRequest,
     SignUpRequest,
 )
-from constant import secret_key
-from just_model import model
+from tortoise import Model, Tortoise, fields
+
+model = Llama(
+    model_path=MODEL_PATH,
+    n_gpu_layers=-1,
+    n_batch=512,
+    n_ctx=4096,
+    n_parts=1,
+)
 
 
 def get_count_of_user_messages(messages):
@@ -23,6 +36,8 @@ def get_count_of_user_messages(messages):
     return count
 
 
+secret_key = "allelleo"
+
 case15 = APIRouter(prefix="/case15")
 
 
@@ -32,9 +47,9 @@ async def sign_in(data: SignInRequest):
     try:
         user = await User.get(email=data.email)
     except:
-        raise
+        raise HTTPException(status_code=404, detail="user not found")
     if not user.password == data.password:
-        raise
+        raise HTTPException(status_code=401, detail="wrong password")
     return {
         "token": jwt.encode(
             {"user_id": user.id},
@@ -48,10 +63,10 @@ async def sign_in(data: SignInRequest):
 @case15.post("/sign-up")
 async def sign_up(data: SignUpRequest):
     if await User.exists(username=data.username):
-        raise
+        raise HTTPException(status_code=409, detail="email unique")
 
     if await User.exists(email=data.email):
-        raise
+        raise HTTPException(status_code=409, detail="username unique")
 
     user = User(
         username=data.username,
