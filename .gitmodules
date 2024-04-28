@@ -1,0 +1,4 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/POST-AIrony/TulaHack2024_15_28.git
+	branch = frontend
