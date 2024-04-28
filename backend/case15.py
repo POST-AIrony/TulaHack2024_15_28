@@ -204,6 +204,8 @@ async def send_chat_to_public(data: PublicChatCreate):
     )
     await public_chat.save()
 
+    return {"status": "ok"}
+
 
 @case15.get("/chat/public/moderation")
 async def send_chat_to_public(token: str, public_id: int):
