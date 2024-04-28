@@ -129,6 +129,8 @@ animation: textShine 5s ease-in-out infinite alternate;
   border-radius: 10px;
   right: -872px;
   top:0;
+  
+  transition: 0.5s;
 }
 
 .voity{
@@ -136,6 +138,8 @@ position: absolute;
 top: 388px;
 left: 316px;
 font-size: 64px;
+
+transition: 0.5s;
 }
 
 .inputlogcc{
@@ -149,6 +153,7 @@ left: 210px;
 margin:15px;
 color: #575757;
 
+transition: 0.5s;
 
 }
 
@@ -160,6 +165,8 @@ color: #575757;
   width: 250px;
 font-size: 20px;
   transition: 0.5s;
+  
+  transition: 0.5s;
 }
 
 .otvetcc{
@@ -168,5 +175,73 @@ font-size: 20px;
   left: 2px;
   top: 125px;
 font-size: 20px;
+  transition: 0.5s;
+  
+  transition: 0.5s;
+}
+
+.reg{
+
+  position: absolute;
+  top: 388px;
+  left: 216px;
+  font-size: 64px;
+  
+  transition: 0.5s;
+}
+
+.inputlogccreg{
+
+  position: relative;
+border-radius: 20px;
+background-color: #DEDEDE;
+font-size: 25px;
+padding: 5px;
+top: 500px;
+left: 260px;
+margin:15px;
+color: #575757;
+
+transition: 0.5s;
+}
+
+.vxodreg{
+  position: absolute;
+  top:700px;
+  left: 290px;
+  width: 300px;
+  height: 60px;
+  background: linear-gradient(
+  to right,
+  #8DEAFF 20%,
+  #1681FF 30%,
+  #8DEAFF 70%,
+  #1681FF 80%
+);
+border-radius: 25px;
+background-size: 500% auto;
+animation: textShine 5s ease-in-out infinite alternate;
+
+transition: 0.5s;
+}
+
+.predlogccdr{
+  position: absolute;
+  color: #000000;
+  left: 48px;
+  top: 100px;
+  width: 250px;
+font-size: 20px;
+  
+  transition: 0.5s;
+}
+
+.otvetccdr{
+  position: absolute;
+  color: #1681FF;
+  left: 90px;
+  top: 125px;
+font-size: 20px;
+  
   transition: 0.5s;
 }

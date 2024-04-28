@@ -57,42 +57,42 @@ export default function CC() {
           </Link>
           </div>
           ) : (<div>
-<p className="text-[#111111] text-[30px] font-['Montserrat_Alternates'] font-semibold voity">
+<p className="text-[#111111] text-[30px] font-['Montserrat_Alternates'] font-semibold reg">
               Регистрация
             </p>
 
             <input
                 type="text"
                 placeholder="Имя пользователя"
-                className="font-['Montserrat_Alternates'] font-semibold inputlogcc"
+                className="font-['Montserrat_Alternates'] font-semibold inputlogccreg"
               />
               <br />
               <input
                 type="password"
                 placeholder="Пароль"
-                className="font-['Montserrat_Alternates'] font-semibold inputlogcc"
-              />
+                className="font-['Montserrat_Alternates'] font-semibold inputlogccreg"
+              /><br/>
               <input
                 type="email"
                 placeholder="Почта"
-                className="font-['Montserrat_Alternates'] font-semibold inputlogcc"
+                className="font-['Montserrat_Alternates'] font-semibold inputlogccreg"
               />
 
 
             <Link
             href="/signInDuplicate"
-            className="flex justify-center items-center mt-[50px] w-[425px] h-[75px] rounded-[50px] vxod"
+            className="flex justify-center items-center mt-[50px] w-[425px] h-[75px] rounded-[50px] vxodreg"
           >
-            <p className="text-[#ffffff] text-[30px] font-['Montserrat_Alternates'] font-medium">
-              Войти
+            <p className="text-[#ffffff] text-[30px] font-['Montserrat_Alternates'] font-medium ppp">
+              Продолжить
             </p>
 
-            <h4 className="font-[Montserrat_Alternates] font-semibold predlogcc">
+            <h4 className="font-[Montserrat_Alternates] font-semibold predlogccdr">
                 Уже есть аккаунт?{" "}
               </h4>
               <button
                   onClick={() => setislogin(true)}
-                className="font-[Montserrat_Alternates] font-semibold otvetcc"
+                className="font-[Montserrat_Alternates] font-semibold otvetccdr"
               >
                 Войдите
               </button>
