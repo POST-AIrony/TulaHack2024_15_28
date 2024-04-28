@@ -1,0 +1,11 @@
+.inputBlock {
+    @apply relative flex justify-center items-center w-full h-[100px];
+}
+
+.inputBlock_Input {
+    @apply px-[50px] w-[1200px] h-full bg-[#1f1f1f] border-[5px] border-[#8f02ff] rounded-l-[50px] placeholder:text-[#686868] text-[#ffffff] text-[2rem] font-['Montserrat_Alternates'] font-medium outline-none;
+}
+
+.inputBlock_SendButton {
+    @apply flex justify-center items-center w-[125px] h-full bg-gradient-to-tr from-[#ffdb5e] to-[#9002ff] rounded-r-[50px];
+}

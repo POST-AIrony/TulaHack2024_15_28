@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.whitetrue{
+  position: absolute;
+  top:0;
+  left: 0;
+  background-color: #FFFFFF;
+  height: 1080px;
+  width: 100%;
+}
+
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.logotypetrue{
+    position: absolute;
+    margin: 5px;
+    font-size: 50px;
+    left: 607px;
+    top:20px;
+    background: linear-gradient(
+      to right,
+      #8DEAFF 20%,
+      #1681FF 30%,
+      #8DEAFF 70%,
+      #1681FF 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+  }
+
+.lox{
+  position: absolute;
+    font-size: 50px;
+    top: 232px;
+    left:367px;
+    width: 1000px;
+  }
+
+h3{
+  position: absolute;
+  font-size: 40px;
+  top: 370px;
+  left:67px;
+  width: 645px;
+}
+
+.buttonglav{
+  position: absolute;
+  margin: 5px;
+  font-size: 100px;
+  left: 150px;
+  width: 304px;
+  height: 62px;
+  top:895px;
+background: linear-gradient(
+  to right,
+  #8DEAFF 20%,
+  #1681FF 30%,
+  #8DEAFF 70%,
+  #1681FF 80%
+);
+border-radius: 20px;
+-webkit-text-fill-color: transparent;
+background-size: 500% auto;
+animation: textShine 5s ease-in-out infinite alternate;
+}
+
+.backback{
+  position: absolute;
+  top:300px;
+  left: 460px;
+  width: 610px;
+  background: linear-gradient(
+  to right,
+  #8DEAFF 20%,
+  #1681FF 30%,
+  #8DEAFF 70%,
+  #1681FF 80%
+);
+border-radius: 25px;
+background-size: 500% auto;
+animation: textShine 5s ease-in-out infinite alternate;
+}
+
+.exit{
+  position: absolute;
+  left:1500px;
+  top: 60px;
+}
+
+.footerfo{
+ position: absolute;
+ top: 75%;
+  background-color: #1681FF;
+}
+
+.podvinut{
+  position: absolute;
+  left: 450px;
+}
+
+a{
+  color: #1681FF;
+  
+}
+.page{
+  max-width: 60em;
+  margin: 0 auto;
+  
+}
+table th,
+table td{
+  text-align: left;
+  
+}
+table.layout{
+  position: absolute;
+  top:300px;
+  left: 100px;
+  width: 1500px;
+  border-collapse: collapse;
+  
+}
+table.display{
+  margin: 1em 0;
+  
+}
+table.display th,
+table.display td{
+  border: 5px solid ;
+  padding: .5em 1em;
+  
+  border-color: #1681FF;
+}
+
+table.display th{ background: #D5E0CC; }
+table.display td{ background: #fff; }
+
+table.responsive-table{
+}
+
+@media (max-width: 30em){
+    table.responsive-table{
+      box-shadow: none;  
+    }
+    table.responsive-table thead{
+      display: none; 
+    }
+  table.display th,
+  table.display td{
+    padding: .5em;
+  }
+    
+  table.responsive-table td:nth-child(1):before{
+    content: 'Number';
+  }
+  table.responsive-table td:nth-child(2):before{
+    content: 'Name';
+  }
+  table.responsive-table td:nth-child(1),
+  table.responsive-table td:nth-child(2){
+    padding-left: 25%;
+  }
+  table.responsive-table td:nth-child(1):before,
+  table.responsive-table td:nth-child(2):before{
+    position: absolute;
+    left: .5em;
+    font-weight: bold;
+  }
+  
+    table.responsive-table tr,
+    table.responsive-table td{
+        display: block;
+    }
+    table.responsive-table tr{
+        position: relative;
+        margin-bottom: 1em;
+    }
+    table.responsive-table td{
+        border-top: none;
+    }
+    table.responsive-table td.organisationnumber{
+        background: #D5E0CC;
+        border-top: 1px solid #B3BFAA;
+    }
+    table.responsive-table td.actions{
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background: none;
+        
+    }
+}
