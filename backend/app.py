@@ -49,10 +49,3 @@ from fastapi.templating import Jinja2Templates
 
 # if __name__ == "__main__":
 #     uvicorn.run(app)
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/html")
-
-
-@app.get("/")
-async def index(request: Request):
-    return templates.TemplateResponse(request=request, name="index.html")
