@@ -38,7 +38,7 @@ export default function CC() {
               />
 
             <Link
-            href="/signInDuplicate"
+            href="/userRecords"
             className="flex justify-center items-center mt-[50px] w-[425px] h-[75px] rounded-[50px] vxod"
           >
             <p className="text-[#ffffff] text-[30px] font-['Montserrat_Alternates'] font-medium">
