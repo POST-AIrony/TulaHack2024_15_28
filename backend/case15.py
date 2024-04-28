@@ -2,7 +2,7 @@ import asyncio
 
 import jwt
 from constant import MODEL_PATH
-from fastapi import APIRouter, FastAPI, Request
+from fastapi import APIRouter, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from llama_cpp import Llama
 from ml import interact_history
@@ -47,9 +47,9 @@ async def sign_in(data: SignInRequest):
     try:
         user = await User.get(email=data.email)
     except:
-        raise
+        raise HTTPException(status_code=404, detail="user not found")
     if not user.password == data.password:
-        raise
+        raise HTTPException(status_code=401, detail="wrong password")
     return {
         "token": jwt.encode(
             {"user_id": user.id},
@@ -63,10 +63,10 @@ async def sign_in(data: SignInRequest):
 @case15.post("/sign-up")
 async def sign_up(data: SignUpRequest):
     if await User.exists(username=data.username):
-        raise
+        raise HTTPException(status_code=409, detail="email unique")
 
     if await User.exists(email=data.email):
-        raise
+        raise HTTPException(status_code=409, detail="username unique")
 
     user = User(
         username=data.username,
@@ -204,6 +204,8 @@ async def send_chat_to_public(data: PublicChatCreate):
     )
     await public_chat.save()
 
+    return {"status": "ok"}
+
 
 @case15.get("/chat/public/moderation")
 async def send_chat_to_public(token: str, public_id: int):
@@ -212,7 +214,7 @@ async def send_chat_to_public(token: str, public_id: int):
     user = await User.get(id=user_id)
 
     if not user.is_admin:
-        raise
+        raise HTTPException(status_code=401, detail="not admin")
 
     public_chat = await PublicChat.get(id=public_id)
     public_chat.is_accepted = True
@@ -221,13 +223,13 @@ async def send_chat_to_public(token: str, public_id: int):
 
 
 @case15.get("/chat/public/moderation/all")
-async def send_chat_to_public(token: str, public_id: int):
+async def send_chat_to_public(token: str):
     decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
 
     if not user.is_admin:
-        raise
+        raise HTTPException(status_code=401, detail="not admin")
     data = []
     public_chat = await PublicChat.all()
     for chat in public_chat:
