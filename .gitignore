@@ -82,9 +82,8 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
 db.sqlite3-journal
-
+model-q8_0.gguf
 # Flask stuff:
 instance/
 .webassets-cache
@@ -183,3 +182,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 backend/model-q8_0.gguf
+model-q8_0.gguf
+Финальный вариант.mp4
+backend/db.sqlite3-shm
+backend/db.sqlite3-wal
+
+db.sqlite3-shm
+db.sqlite3-wal
