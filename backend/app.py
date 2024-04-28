@@ -1,11 +1,17 @@
 from case15 import case15
 from case28 import case28
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise import Tortoise
 
 
 async def init():
+    """
+    Инициализирует подключение к базе данных и генерирует схемы.
+
+    Returns:
+    - None
+    """
     await Tortoise.init(
         db_url="sqlite://db.sqlite3",  # Подставьте путь к файлу SQLite
         modules={
@@ -16,20 +22,19 @@ async def init():
 
 
 async def lifespan(app: FastAPI):
+    """
+    Функция жизненного цикла FastAPI.
+
+    Parameters:
+    - app (FastAPI): Экземпляр FastAPI приложения.
+
+    Yields:
+    - None
+    """
     await init()
 
     yield
 
-
-def get_count_of_user_messages(messages):
-    count = 0
-    for msg in messages:
-        if msg["role"] == "user":
-            count += 1
-    return count
-
-
-secret_key = "allelleo"
 
 app = FastAPI(title="TulaHack", lifespan=lifespan)
 
@@ -44,8 +49,5 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-
 # if __name__ == "__main__":
 #     uvicorn.run(app)

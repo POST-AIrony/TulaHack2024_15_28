@@ -36,7 +36,19 @@ def text2json(dialog_str):
 
 @case28.post("/sign-in")
 async def sign_in(data: SignInRequest):
+    """
+    Выполняет аутентификацию пользователя.
 
+    Parameters:
+    - data (SignInRequest): Объект, содержащий данные для аутентификации.
+    
+    Returns:
+    - dict: Словарь с JWT-токеном, содержащим идентификатор пользователя.
+
+    Raises:
+    - HTTPException: Ошибка HTTP с кодом статуса 404, если пользователь не найден.
+    - HTTPException: Ошибка HTTP с кодом статуса 401, если указан неверный пароль.
+    """
     try:
         user = await User.get(email=data.email)
     except:
@@ -55,6 +67,18 @@ async def sign_in(data: SignInRequest):
 
 @case28.post("/sign-up")
 async def sign_up(data: SignUpRequest):
+    """
+    Регистрирует нового пользователя.
+
+    Parameters:
+    - data (SignUpRequest): Объект, содержащий данные для регистрации нового пользователя.
+
+    Returns:
+    - dict: Словарь с идентификатором созданного пользователя.
+
+    Raises:
+    - HTTPException: Ошибка HTTP с кодом статуса 409, если указанный email уже занят.
+    """
     if await User.exists(email=data.email):
         raise HTTPException(status_code=409, detail="email unique")
 
@@ -70,6 +94,18 @@ async def sign_up(data: SignUpRequest):
 
 @case28.post("/protected")
 async def protected(token: str):
+    """
+    Получает информацию о пользователе по JWT-токену.
+
+    Parameters:
+    - token (str): JWT-токен для аутентификации пользователя.
+
+    Returns:
+    - User: Объект пользователя.
+
+    Raises:
+    - HTTPException: Ошибка HTTP с кодом статуса 401, если токен недействителен.
+    """
     decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
@@ -78,6 +114,18 @@ async def protected(token: str):
 
 @case28.post("/chat")
 async def create_chat(data: CreateChat28):
+    """
+    Создает новый чат.
+
+    Parameters:
+    - data (CreateChat28): Объект, содержащий данные для создания чата.
+
+    Returns:
+    - dict: Словарь с информацией о созданном чате.
+
+    Raises:
+    - HTTPException: Ошибка HTTP с кодом статуса 400, если формат диалога неверный.
+    """
     decoded_token = jwt.decode(data.token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
@@ -104,6 +152,18 @@ async def create_chat(data: CreateChat28):
 
 @case28.get("/chat")
 async def get_chats(token: str):
+    """
+    Получает список чатов пользователя.
+
+    Parameters:
+    - token (str): JWT-токен для аутентификации пользователя.
+
+    Returns:
+    - list: Список чатов пользователя в формате JSON.
+
+    Raises:
+    - HTTPException: Ошибка HTTP с кодом статуса 404, если чаты не найдены.
+    """
     decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
@@ -119,6 +179,19 @@ async def get_chats(token: str):
 
 @case28.get("/chat/messages")
 async def chat_messages(token: str, chat_id: int):
+    """
+    Получает сообщения чата по его идентификатору.
+
+    Parameters:
+    - token (str): JWT-токен для аутентификации пользователя.
+    - chat_id (int): Идентификатор чата.
+
+    Returns:
+    - dict: Сообщения чата в формате JSON.
+
+    Raises:
+    - HTTPException: Ошибка HTTP с кодом статуса 404, если чат не найден.
+    """
     decoded_token = jwt.decode(token, secret_key, algorithms=["HS256"])
     user_id = decoded_token.get("user_id")
     user = await User.get(id=user_id)
